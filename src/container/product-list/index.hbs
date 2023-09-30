@@ -1,0 +1,43 @@
+<div class='page'>
+	<div class='page-content'>
+
+		<h1 class='text text--primary my-3'>
+			{{#if isNotEmpty}}
+			Product list
+			{{else}}
+			There are no products yet...
+			{{/if}}
+		</h1>
+
+		{{!--
+		<div class='card vertical'>
+			<h2 class='text text--title'>name</h2>
+			<p class='text'>description</p>
+			<p class='text text--secondary'>ID: {{id}}</p>
+
+			<div class='product-card-footer'>
+				<span class='text text--semi-bold'>price₴</span>
+				<a href='#' class='link'>Edit</a>
+			</div>
+		</div>
+		--}}
+		<div class='product-list'>
+			{{#each products}}
+			<div class='card vertical'>
+				<h2 class='text text--title'>{{name}}</h2>
+				<p class='text'>{{description}}</p>
+				<p class='text text--secondary'>ID: {{id}}</p>
+
+				<div class='product-card-footer'>
+					<span class='text text--semi-bold'>{{price}}₴</span>
+					<a href='/product-edit?id={{id}}' class='link clickable'>Edit</a>
+				</div>
+			</div>
+			{{/each}}
+		</div>
+
+
+		
+	</div>
+	
+</div>
