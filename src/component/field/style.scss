@@ -1,0 +1,36 @@
+.input-style, .textarea-style {
+	display: flex;
+	padding: 15px 30px;
+	align-items: flex-start;
+	gap: 10px;
+	align-self: stretch;
+	color: var(--Black, #000);
+	font-size: 20px;
+	border-radius: 8px;
+	border: 1px solid #CED4DA;
+}
+
+.disabled {
+	display: none !important;
+	position: absolute;
+}
+
+label {
+	color: var(--color-fill-dark, #343A40);
+	font-size: 16px;
+}
+
+.textarea-info {
+	color: var(--Grey, #808080);
+	font-size: 14px;
+}
+
+.lg {
+	grid-column: span 2;
+}
+
+.field-box {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}

@@ -71,6 +71,43 @@
   font-weight: 500;
 }
 
+.input-style, .textarea-style {
+  display: flex;
+  padding: 15px 30px;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+  color: var(--Black, #000);
+  font-size: 20px;
+  border-radius: 8px;
+  border: 1px solid #CED4DA;
+}
+
+.disabled {
+  display: none !important;
+  position: absolute;
+}
+
+label {
+  color: var(--color-fill-dark, #343A40);
+  font-size: 16px;
+}
+
+.textarea-info {
+  color: var(--Grey, #808080);
+  font-size: 14px;
+}
+
+.lg {
+  grid-column: span 2;
+}
+
+.field-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 h1 {
   color: var(--Blue, #0050FF);
   font-size: 40px;
@@ -88,6 +125,28 @@ header {
   grid-template-columns: repeat(3, 1fr);
   column-gap: 20px;
   row-gap: 32px;
+}
+
+.product-info form {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  align-self: stretch;
+}
+.product-info form hr {
+  width: 100%;
+  stroke-width: 1px;
+  stroke: #CED4DA;
+  height: 0px;
+  align-self: stretch;
+}
+
+.characteristics {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 30px;
+  flex: 1 0 0;
 }
 
 /*# sourceMappingURL=style.css.map */

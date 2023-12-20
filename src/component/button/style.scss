@@ -1,0 +1,24 @@
+
+@use '../../lib/service.scss' as s;
+
+.button-buy {
+	display: flex;
+	padding: s.space(4) s.space(8);
+	justify-content: center;
+	align-items: center;
+	gap: 7px;
+	align-self: stretch;
+
+	border-radius: 8px;
+	background: var(--Blue, #0050FF);
+
+	color: #FFF;
+	font-size: s.space(5);
+	text-decoration: none;
+
+	strong {
+		font-size: s.space(6);
+		font-weight: 500;
+	}
+}
+

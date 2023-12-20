@@ -1,0 +1,34 @@
+{{#with data.product}}
+<div class="product-info">
+
+	<form id="purchase-create" method="POST" action="purchase-create?id={{id}}">
+		<img src="{{image}}" alt="{{name}}">
+		<div class="characteristics">
+			<h1>{{name}}</h1>
+			<hr>
+			<p>{{characteristics}}</p>
+			<hr>
+
+			{{> field name='quantity' type='number' label='Quantity of products' placeholder='Enter quantity of product'}}
+
+			{{> button buy_button=1 price=price}}
+
+		</div>
+	</form>
+
+</div>
+{{/with}}
+
+<header>
+
+	<h2>Other products</h2>
+
+</header>
+<div class="products-list">
+
+	{{#each data.list}}
+	{{> product info=this}}
+	{{/each}}
+
+</div>
+

@@ -2,4 +2,18 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+.page {
+  padding: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.page-content {
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
 /*# sourceMappingURL=style.css.map */

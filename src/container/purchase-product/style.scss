@@ -1,0 +1,49 @@
+
+@use '../../lib/service.scss' as s;
+@use '../../component/product/style.scss' as productStyle;
+@use '../../component/button/style.scss' as buttonStyle;
+@use '../../component/field/style.scss' as fieldStyle;
+
+h1 {
+	color: var(--Blue, #0050FF);
+	font-size: 40px;
+	font-weight: 500;
+}
+
+header {
+	display: flex;
+	flex-direction: column;
+	gap: s.space(5);
+}
+
+.products-list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	column-gap: s.space(5);
+	row-gap: s.space(8);
+}
+
+.product-info form {
+	display: flex;
+	align-items: flex-start;
+	gap: 20px;
+	align-self: stretch;
+
+	hr {
+		width: 100%;
+		stroke-width: 1px;
+		stroke: #CED4DA;
+		height: 0px;
+		align-self: stretch;
+	}
+}
+
+.characteristics {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 30px;
+	flex: 1 0 0;
+}
+
+

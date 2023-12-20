@@ -1,0 +1,114 @@
+.input-style, .textarea-style {
+  display: flex;
+  padding: 15px 30px;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+  color: var(--Black, #000);
+  font-size: 20px;
+  border-radius: 8px;
+  border: 1px solid #CED4DA;
+}
+
+.disabled {
+  display: none !important;
+  position: absolute;
+}
+
+label {
+  color: var(--color-fill-dark, #343A40);
+  font-size: 16px;
+}
+
+.textarea-info {
+  color: var(--Grey, #808080);
+  font-size: 14px;
+}
+
+.lg {
+  grid-column: span 2;
+}
+
+.field-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.button-buy {
+  display: flex;
+  padding: 16px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  align-self: stretch;
+  border-radius: 8px;
+  background: var(--Blue, #0050FF);
+  color: #FFF;
+  font-size: 20px;
+  text-decoration: none;
+}
+.button-buy strong {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.form-box {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  align-items: flex-start;
+  gap: 12px;
+  align-self: stretch;
+  border-radius: 12px;
+  background: #FFF;
+  box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  align-self: stretch;
+}
+
+.form_heading {
+  margin-bottom: 60px;
+  color: var(--Blue, #0050FF);
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 100%; /* 40px */
+}
+
+h2 {
+  color: var(--Blue, #0050FF);
+  font-size: 24px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.cart {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  gap: 20px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-self: stretch;
+  color: var(--Black, #000);
+  font-size: 16px;
+  line-height: 150%; /* 24px */
+}
+
+.cart-item-price {
+  color: var(--Black, #000);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+/*# sourceMappingURL=style.css.map */

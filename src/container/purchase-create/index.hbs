@@ -1,0 +1,40 @@
+<div class="form-box">
+
+	<h1 class='form_heading'>{{form_heading}}</h1>
+
+	<ul class='cart'>
+		{{#with cart}}
+		<li class='cart-item'>
+			<span>{{name}} ({{quantity}} шт.)</span>
+			<span class='cart-item-price'>{{price}} UAH</span>
+		</li>
+		{{/with}}
+
+		<li class='cart-item'>
+			<span>Delivery price</span>
+			<span class='cart-item-price'>{{delivery_price}} UAH</span>
+		</li>
+	</ul>
+
+	<h2>Purchase</h2>
+
+	<form method='POST' action='purchase-submit?id={{id}}' class='form'>
+		{{> field name='lastname' type='text' placeholder='Lastname' label='Lastname'}}
+		{{> field name='firstname' type='text' placeholder='Firstname' label='Firstname'}}
+		{{> field name='tel' type='tel' placeholder='Telephone number' label='Telephone number'}}
+		{{> field name='email' type='email' placeholder='E-mail' label='E-mail'}}
+		{{> textarea class='lg' name='COMMent' info='Comment will be sent to courier' label='Comment'}}
+
+		{{> field type='number' value=total_price name='total_price' disabled=1}}
+		{{> field type='number' value=delivery_price name='delivery_price' disabled=1}}
+		{{> field type='number' value=quantity name='quantity' disabled=1}}
+
+
+		{{> field name='bonuses' type='text' placeholder='Bonuses' label='Bonuses'}}
+		{{> field name='promo' type='text' placeholder='Promocode' label='Promocode'}}
+		<span class='lg total-price'>Total: {{total_price}} UAH (+ {{bonuses}} to bonus account)</span>
+
+		{{>button form_button=1 lg=1 text='Create purchase'}}
+
+	</form>
+</div>

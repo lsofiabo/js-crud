@@ -1,0 +1,65 @@
+@use '../../lib/service.scss' as s;
+
+.product {
+	padding: s.space(4);
+	display: flex;
+	flex-direction: column;
+	gap: s.space(4);
+
+	border-radius: s.space(3);
+	border: 1px solid #CED4DA;
+
+	h2 {
+		color: var(--color-fill-font-color, #212529);
+		font-size: 20px;
+		font-weight: 500;
+	}
+	p {
+		overflow: hidden;
+		color: var(--color-fill-font-color, #212529);
+		text-overflow: ellipsis;
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 23px; /* 143.75% */
+	}
+	.badge {
+		display: flex;
+		padding: 8px 16px;
+		align-items: flex-start;
+		gap: 10px;
+
+		border-radius: 80px;
+		border-width: 1px;
+		border-style: solid;
+	}
+	.badge-blue {
+		border-color: #0050FF;
+		color: #0050FF;
+	}
+	.badge-green {
+		border-color: #008000;
+		color: #008000;
+	}
+
+	.button {
+		border-radius: 8px;
+		background: var(--Blue, #0050FF);
+		display: flex;
+		padding: 16px 32px;
+		justify-content: center;
+		align-items: center;
+		gap: 7px;
+		color: white;
+		font-size: s.space(4);
+		text-decoration: none;
+
+		strong {
+			font-weight: 500;
+			font-size: s.space(5);
+		}
+
+	}
+
+}
+
+
