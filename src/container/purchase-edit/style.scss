@@ -1,0 +1,35 @@
+
+@use '../../component/button/style.scss' as buttonStyle;
+@use '../../component/field/style.scss' as fieldStyle;
+@use '../../component/field-info/style.scss' as fieldInfoStyle;
+
+
+.edit-box {
+	display: flex;
+	flex-direction: column;
+	padding: 24px;
+	align-items: flex-start;
+	gap: 20px;
+	align-self: stretch;
+	border-radius: 12px;
+	background: #FFF;
+	box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+	color: var(--Blue, #0050FF);
+	font-size: 40px;
+	font-weight: 500;
+	line-height: 100%; /* 40px */
+	margin-bottom: 20px;
+}
+
+form {
+	align-self: stretch;
+	display: grid;
+	gap: 20px;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+}
+
+

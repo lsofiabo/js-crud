@@ -1,0 +1,14 @@
+<div class="edit-box">
+
+	<h1>Edit data</h1>
+	{{#with data}}
+	{{> field-info label='ID:' value=id }}
+	<form id='purchase-edit' class='form-edit' method='POST' action='/purchase-edit?id={{id}}'>
+		{{>field name='lastname-edit' type='text' placeholder='Lastname' value=lastname }}
+		{{>field name='firstname-edit' type='text' placeholder='Firstname' value=firstname }}
+		{{>field name='email-edit' type='email' placeholder='E-mail' value=email }}
+		{{>field name='tel-edit' type='text' placeholder='Phone number' value=tel }}
+	</form>
+	{{/with}}
+	{{> button form_button=1 lg=1 text='Save changes' form='purchase-edit' }}
+</div>

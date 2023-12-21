@@ -64,8 +64,8 @@ class Purchase {
 		return newPurchase;
 	}
 
-	static getList = () => {
-		return Purchase.#list.reverse();
+	static getListByEmail = (email) => {
+		return Purchase.#list.filter((item) => item.email === email);
 	}
 
 	static getByID = (id) => {
@@ -262,7 +262,7 @@ router.post('/purchase-submit', function(req, res) {
 			data: {
 				message: 'Error',
 				info: 'Product not found',
-				link: '/purchase-list',
+				link: '/',
 			}
 		})
 	}
@@ -274,7 +274,7 @@ router.post('/purchase-submit', function(req, res) {
 			data: {
 				message: 'Error',
 				info: 'Not enough product in stock',
-				link: '/purchase-list',
+				link: '/',
 			}
 		})
 	}
@@ -298,7 +298,7 @@ router.post('/purchase-submit', function(req, res) {
 			data: {
 				message: 'Error',
 				info: 'Invalid data',
-				link: '/purchase-list',
+				link: '/',
 			}
 		})
 	}
@@ -310,7 +310,7 @@ router.post('/purchase-submit', function(req, res) {
 			data: {
 				message: 'Error',
 				info: 'Fill required fields',
-				link: '/purchase-list',
+				link: '/',
 			}
 		})
 	}
@@ -378,9 +378,101 @@ router.post('/purchase-submit', function(req, res) {
 		data: {
 			message: 'Success!',
 			info: 'Purchase created successfully',
-			link: '/purchase-list',
+			link: '/purchase-info?id=' + purchase.id,
 		}
 	})
+})
+
+router.get('/purchase-info', function(req, res) {
+
+	const id = Number(req.query.id);
+
+	let {
+		firstname,
+		lastname,
+		tel,
+		email,
+		comment,
+		bonus,
+		promocode,
+		total_price,
+		product_price,
+		delivery_price,
+		quantity,
+		product,
+	} = Purchase.getByID(id);
+
+	let product_name = product.name;
+
+	res.render('purchase-info', {
+		style: 'purchase-info',
+		data: {
+			id,
+			firstname,
+			lastname,
+			phone: tel,
+			email,
+			comment,
+			bonus: bonus + "$",
+			promocode,
+			total_price: total_price + "$",
+			product_price: product_price + "$",
+			delivery_price: delivery_price + "$",
+			quantity,
+			product_name,
+		}
+	})
+})
+
+router.get('/purchase-edit', function(req, res) {
+	
+	const id = Number(req.query.id);
+	const purchase = Purchase.getByID(id);
+
+	console.log('ID: ' + id);
+	console.log(purchase);
+
+	let { firstname, lastname, email, tel } = purchase;
+	console.log(firstname, lastname, email, tel);
+
+	res.render('purchase-edit', {
+		style: 'purchase-edit',
+		data: {
+			id,
+			firstname,
+			lastname,
+			email,
+			tel,
+		}
+	})
+})
+
+router.post('/purchase-edit', function(req, res) {
+	const id = Number(req.query.id);
+	
+	res.render('alert', {
+		style: 'alert',
+		data: {
+			message: 'Success!',
+			info: 'Purchase updated successfully',
+			link: '/my-purchases?id=' + id,
+		}
+	})
+})
+
+router.get('/my-purchases', function(req, res) {
+	const id = Number(req.query.id);
+	const email = Purchase.getByID(id).email;
+
+	const purchases = Purchase.getListByEmail(email);
+
+	res.render('my-purchases', {
+		style: 'my-purchases',
+		data: {
+			purchases,
+		},
+	})
+
 })
 
 // ================================================================
