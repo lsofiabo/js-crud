@@ -1,0 +1,148 @@
+@layer general, block, element, mod;
+@layer genereal {
+  :root {
+    --color-primary: #0c59ff;
+    --color-danger: #ed0e24;
+  }
+}
+@layer block {
+  .page {
+    display: flex;
+    justify-content: center;
+    max-width: 1200px;
+  }
+  .page-content {
+    padding: 30px;
+  }
+  .card {
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 16px;
+  }
+  .form {
+    display: grid;
+    gap: 16px;
+    grid-template-rows: min-content min-content 1fr min-content;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .form input, .form textarea {
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    padding: 8px 12px;
+    color: #333;
+  }
+  .button {
+    padding: 8px 24px;
+    border-radius: 8px;
+    transition-property: opacity;
+    transition: 0.3s;
+    text-decoration: none;
+    text-align: center;
+  }
+  .clickable, .button {
+    transition-property: opacity;
+    transition-duration: 0.3s;
+  }
+  .clickable:hover, .button:hover {
+    opacity: 0.7;
+  }
+  .text {
+    color: #222;
+  }
+  .large-columns {
+    grid-column: span 2;
+  }
+  .large-rows {
+    grid-row: span 2;
+  }
+  .result-card {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+  }
+  .vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .full-width {
+    display: block;
+    width: 100%;
+  }
+  .product-list {
+    display: grid;
+    row-gap: 20px;
+    column-gap: 14px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .product-card-footer {
+    display: flex;
+    justify-content: space-between;
+  }
+  .link {
+    text-decoration: none;
+    color: var(--color-primary);
+  }
+  .my-3 {
+    margin: 24px 0px;
+  }
+  .form-create-product {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-areas: "title title title title title title" "name name price price id id" "description description description description description description" "save save save delete delete delete";
+  }
+  .form-create-product h2 {
+    grid-area: title;
+  }
+  .form-create-product .name {
+    grid-area: name;
+  }
+  .form-create-product .price {
+    grid-area: price;
+  }
+  .form-create-product .id {
+    grid-area: id;
+  }
+  .form-create-product .description {
+    grid-area: description;
+  }
+  .form-create-product .save {
+    grid-area: save;
+  }
+  .form-create-product .delete {
+    grid-area: delete;
+  }
+}
+@layer element {
+  .form__field {
+    display: grid;
+    gap: 4px;
+  }
+}
+@layer mod {
+  .text--secondary {
+    color: gray;
+    font-size: 14px;
+  }
+  .text--title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .text--primary {
+    color: var(--color-primary);
+  }
+  .text--semi-bold {
+    font-weight: 550;
+  }
+  .button--primary {
+    color: whitesmoke;
+    background-color: var(--color-primary);
+  }
+  .button--danger {
+    color: whitesmoke;
+    background-color: var(--color-danger);
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

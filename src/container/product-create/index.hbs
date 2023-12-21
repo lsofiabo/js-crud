@@ -1,0 +1,30 @@
+<div class='page'>
+	<div class='page-content'>
+		<div class='card'>
+			<form class='form' method='POST' action='/product-create'>
+				<h2 class='text text--title large-columns'>Product info</h2>
+				
+				<div class='form__field'>
+					<label class='text form__label' for='name'>Name</label>
+					<input class='text' type='text' id='name' name='name' />
+				</div>
+
+
+				<div class='form__field'>
+					<label class='form__label' for='price'>Price</label>
+					<input class='text' type='number' id='price' name='price' />
+				</div>
+
+				<div class='form__field large-columns'>
+					<label class='form__label' or='description'>Brief description</label>
+					<textarea class='text' rows='4' cols='50' id='description' name='description' ></textarea>
+					<p class='text--secondary'>Is displayed in product card</p>
+				</div>
+
+				<button type='submit' class='button button--primary large-columns'>Create product</button>
+			</form>
+
+
+		</div>
+	</div>
+</div>

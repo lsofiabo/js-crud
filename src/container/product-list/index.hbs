@@ -1,0 +1,17 @@
+<div class='page'>
+	<div class='page-content'>
+
+		<h1 class='text text--primary my-3'>
+			{{#if isNotEmpty}}
+				Product list
+			{{else}}
+				There are no products yet...
+			{{/if}}
+		</h1>
+		<div class='product-list'>
+			{{#each products}}
+				{{> product-card product=this}}
+			{{/each}}
+		</div>
+	</div>
+</div>
