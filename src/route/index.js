@@ -5,307 +5,475 @@ const router = express.Router()
 
 // ================================================================
 
+class Purchase {
+	static DELIVERY_PRICE = 150;
+	static #BONUS_FACTOR = 0.1;
 
-class User {
 	static #list = [];
+	static #count = 0;
 
-	constructor(email, login, password) {
-		this.email = email
-		this.login = login
-		this.password = password
-		this.id = new Date().getTime()
+	static #bonusAccount = new Map();
+
+	static getBonusBalance = (email) => {
+		return Purchase.#bonusAccount.get(email) || 0;
 	}
 
-	static add = (user) => {
-		this.#list.push(user);
+	static calcBonusAmount = (value) => {
+		return value * Purchase.#BONUS_FACTOR;
 	}
 
-	static getList = () => {
-		return this.#list;
+	static updateBonusBalance = (
+		email, price, bonusUse = 0
+	) => {
+		const amount = this.calcBonusAmount(price);
+		const currentBalance = Purchase.getBonusBalance(email);
+
+		const updatedBalance = currentBalance + amount - bonusUse;
+
+		Purchase.#bonusAccount.set(email, updatedBalance);
+		console.log(email, updatedBalance);
+		return amount;
 	}
 
-	static getById = (id) => 
-		this.#list.find((user) => user.id === Number(id))
+	constructor(data, product) {
+		this.id = ++Purchase.#count;
 
-	static deleteById = (id) => {
-		const index = this.#list.findIndex(
-			(user) => user.id === Number(id),
-		)
+		this.firstname = data.firstname;
+		this.lastname = data.lastname;
 
-		if(index != -1) {
-			this.#list.splice(index, 1)
+		this.tel = data.tel;
+		this.email = data.email;
+
+		this.comment = data.comment || null;
+
+		this.bonus = data.bonus || 0;
+
+		this.promocode = data.promocode || null;
+
+		this.total_price = data.total_price;
+		this.product_price = data.product_price;
+		this.delivery_price = data.delivery_price;
+		this.quantity = data.quantity;
+
+		this.product = product;
+	}
+
+	static add = (...arg) => {
+		const newPurchase = new Purchase(...arg);
+		Purchase.#list.push(newPurchase);
+		return newPurchase;
+	}
+
+	static getListByEmail = (email) => {
+		return Purchase.#list.filter((item) => item.email === email);
+	}
+
+	static getByID = (id) => {
+		return Purchase.#list.find((item) => item.id === id);
+	}
+
+	static updateByID = (id, data) => {
+		const purchase = Purchase.getByID(id);
+		if (purchase) {
+			if (data.firstname) purchase.firstname = firstname;
+			if (data.lastname) purchase.lastname = data.lastname;
+			if (data.tel) purchase.tel = data.tel;
+			if (data.email) purchase.email = data.email;
+
 			return true;
-		}
-		return false;
-	}
-
-	static updateById = (id, data) => {
-		const user = this.getById(id);
-		if (user) {
-			this.update(user, data);
-			return true;
-		}
-		return false;
-	}
-
-	static update = (user, { email }) => {
-		if (email) {
-			user.email = email;
+		} else {
+			return false;
 		}
 	}
-
-	verifyPassword = (password) => this.password === password;
 }
 
 class Product {
 	static #list = [];
+	static #count = 0;
 
-	constructor (name, price, description) {
-		this.id = Math.floor(Math.random() * 10000) + 1;
+	constructor(image, name, characteristics, is_ready, is_top, price, quantity = 0) {
+		this.id = ++Product.#count;
+		this.image = image;
 		this.name = name;
+		this.characteristics = characteristics;
+		this.is_ready = is_ready;
+		this.is_top = is_top;
 		this.price = price;
-		this.description = description;
-		this.createDate = new Date();
+		this.quantity = quantity;
 	}
 
-	static getList = () => this.#list;
-
-	static add = (product) => {
-		if (this.getById(product.id) !== false) {
-			return false;
-		}
-		this.#list.push(product);
-		return true;
+	static add = (...data) => {
+		const newProduct = new Product(...data);
+		Product.#list.push(newProduct);
 	}
 
-	static getById = (id) => {
-		const index = this.#list.findIndex(
-			(product) => product.id === Number(id)
+	static getList = () => Product.#list;
+
+	static getByID = (id) => {
+		return Product.#list.find((product) => product.id === id);
+	}
+
+	static getRandomFromList = (id) => {
+		const filteredList = Product.#list.filter((product) => product.id !== id);
+
+		const shuffledList = filteredList.sort(
+			() => Math.random() - 0.5
 		);
-		if (index != -1) {
-			return this.#list[index];
-		}
-		return false;
-	}
 
-	static updateById = (id, data) => {
-		const user = this.getById(id);
-		if (!user) {
-			return false;
-		}
-		Object.assign(user, data);
-		return true;
-	}
-
-	static deleteById = (id) => {
-		const index = this.#list.findIndex( (product) => product.id === id );
-		if (index === -1) {
-			return false;
-		} else {
-			this.#list.splice(index, 1);
-			return true;
-		}
+		return shuffledList.slice(0, 3);
 	}
 }
 
+class Promocode {
+	static #list = [];
+
+
+	cconstructor(name, factor) {
+		this.name = name;
+		this.factor = factor;
+	}
+
+	static add = (name, factor) => {
+		const newPromo = new Promocode(name, factor);
+		Promocode.#list.push(newPromo);
+		return newPromo;
+	}
+
+	static getByName = (name) => {
+		return this.#list.find((promo) => promo.name === name);
+	}
+
+	static calc = (promo, price) => {
+		return price * promo.factor;
+	}
+}
+
+Promocode.add('SUMMER2023', 0.9);
+Promocode.add('DISCOUNT50', 0.5);
+Promocode.add('SALE25', 0.75);
+
 // ================================================================
 
-// router.get Створює нам один ентпоїнт
+router.get('/', function(req, res) {
 
-router.get('/', function (req, res) {
-
-
-	const list = User.getList();
+	for (let index = 0; index < 16; index++) {
+		Product.add('https://picsum.photos/200/300', 'Artline Gaming', 'Amd Ryzen 5 3600 (3.6 - 4.2 GGz) / RAM 16 Gb / HDD 1 Tb + SSD 480 Gb', true, true, 27000, 9);
+	}
 
 	res.render('index', {
 		style: 'index',
 
 		data: {
-			users: {
-				list,
-				isEmpty: list.length === 0,
-			},
+			category: 'Laptops and computers',
+			products: Product.getList(),
 		},
 	})
 })
 
-// ================================================================
+router.get('/purchase-product', function(req, res) {
+	const id = Number(req.query.id);
 
-router.get('/product-create', function(req, res) {
-	res.render('product-create', {
-		style: 'product-create'
+	res.render('purchase-product', {
+		style: 'purchase-product',
 
-	})
-} )
-
-// ================================================================
-
-router.post('/product-create', function(req, res) {
-
-	const { name, price, description } = req.body;
-	console.log(name, price, description);
-	const product = new Product(name, Number(price), description);
-	const result = Product.add(product);
-
-	let message = 'Product was not created';
-	if (result) {
-		message = 'Product was created successfully';
-	}
-
-	res.render('alert', {
-		style: 'product-create',
 		data: {
-			success: result,
-			message: message,
+			list: Product.getRandomFromList(),
+			product: Product.getByID(id),
 		}
 	})
-
 })
 
-// ================================================================
+router.post('/purchase-create', function(req, res) {
+	console.log(req.body);
+	const id = Number(req.query.id);
+	const quantity = Number(req.body.quantity);
 
-router.get('/product-list', function(req, res) {
-
-
-	for (let i = 0; i < 20; i++) {
-		const pr = new Product('azaza', 123, 'Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.');
-		Product.add(pr);
+	if (quantity < 1) {
+		res.render('alert', {
+			style: 'alert',
+			data: {
+				message: 'Error',
+				info: 'Product quantity invalid',
+				link: `/purchase-product?id=${id}`,
+			}
+		})
 	}
 
-	const products = Product.getList();
-	console.log(products);
-	res.render('product-list', {
-		style: 'product-create',
-		isNotEmpty: products.length !== 0,
-		products: products,
+	const product = Product.getByID(id);
+
+	if (product.quantity < 1) {
+		res.render('alert', {
+			style: 'alert',
+			data: {
+				message: 'Error',
+				info: 'Product not in stock',
+				link: `/purchase-product?id=${id}`,
+			}
+		})
+	}
+
+	const cart = {
+		name: product.name,
+		price: product.price,
+		quantity: quantity,
+	};
+
+	let total_price = cart.price * cart.quantity;
+	const delivery_price = Purchase.DELIVERY_PRICE;
+	total_price += delivery_price;
+
+	const bonus = Purchase.calcBonusAmount(total_price);
+
+	res.render('purchase-create', {
+		style: 'purchase-create',
+		form_heading: 'Your purchase',
+		cart: cart,
+		delivery_price: delivery_price,
+		total_price: total_price,
+		id: id,
+		bonuses: bonus,
 	})
 })
 
-// ================================================================
+router.post('/purchase-submit', function(req, res) {
 
-router.get('/product-edit', function(req, res) {
+	console.log(req.body);
 
-	let { id } = req.query;
-	id = Number(id);
-	const product = Product.getById(id);
+	const id = Number(req.query.id);
+
+	let {
+		lastname,
+		firstname,
+		tel,
+		email,
+		total_price,
+		delivery_price,
+		quantity,
+		bonuses,
+		promocode,
+
+	} = req.body
+
+	const product = Product.getByID(id);
 
 	if (!product) {
-		res.render('alert', {
-			style: 'product-create',
+		return res.render('alert', {
+			style: 'alert',
 
-			date: {
-				success: false,
-				message: 'Could not find product',
+			data: {
+				message: 'Error',
+				info: 'Product not found',
+				link: '/',
 			}
 		})
+	}
+
+	if (product.quantity < quantity) {
+		return res.render('alert', {
+			style: 'alert',
+
+			data: {
+				message: 'Error',
+				info: 'Not enough product in stock',
+				link: '/',
+			}
+		})
+	}
+
+	total_price = Number(total_price);
+	product_price = product.price;
+	delivery_price = Number(delivery_price);
+	quantity = Number(quantity);
+	bonuses = Number(bonuses);
+
+	if (
+		isNaN(total_price) ||
+		isNaN(product_price) ||
+		isNaN(delivery_price) ||
+		isNaN(quantity) ||
+		isNaN(bonuses)
+	) {
+		return res.render('alert', {
+			style: 'alert',
+
+			data: {
+				message: 'Error',
+				info: 'Invalid data',
+				link: '/',
+			}
+		})
+	}
+
+	if (!firstname || !lastname || !email || !tel) {
+		return res.render('alert', {
+			style: 'alert',
+
+			data: {
+				message: 'Error',
+				info: 'Fill required fields',
+				link: '/',
+			}
+		})
+	}
+
+	if (bonuses || bonuses > 0) {
+		const bonusAmount = Purchase.getBonusBalance(email);
+		console.log(bonusAmount);
+
+		if (bonuses > bonusAmount) {
+			bonuses = bonusAmount;
+		}
+
+		Purchase.updateBonusBalance(email, total_price, bonuses);
+
+		total_price -= bonuses;
 	} else {
-		res.render('product-edit', {
-			style: 'product-create',
-			product: {
-				name: product.name,
-				price: product.price,
-				id: product.id,
-				description: product.description,
-			}
-		})
+		Purchase.updateBonusBalance(email, total_price, 0);
 	}
-})
 
-// ================================================================
+	console.log(`Total price: ${total_price}, bonuses: ${bonuses}`);
 
-router.post('/product-edit', function(req, res) {
+	if (promocode) {
+		promocode = Promocode.getByName(promocode);
 
-	const { name, price, id, descirption } = req.body;
-	const result = Product.updateById(id, {name, price, descirption});
-
-	let message = 'Product was not changed.';
-
-	if (result) {
-		message = 'Product successfully changed';
+		if (promocode) {
+			total_price = Promocode.calc(promocode, total_price);
+		}
 	}
+
+	if (total_price < 0) total_price = 0;
+
+	console.log(
+		lastname,
+		firstname,
+		tel,
+		email,
+		total_price,
+		delivery_price,
+		quantity,
+		bonuses,
+		promocode
+	);
+
+	const purchase = Purchase.add(
+		{
+			total_price,
+			product_price,
+			delivery_price,
+			quantity,
+
+			firstname,
+			lastname,
+			email,
+			tel,
+			promocode,
+			bonuses,
+		}, product
+	);
+
+	console.log(purchase);
+	console.log(purchase);
 
 	res.render('alert', {
-		style: 'product-create',
+		style: 'alert',
 		data: {
-			success: result,
-			message: message,
+			message: 'Success!',
+			info: 'Purchase created successfully',
+			link: '/purchase-info?id=' + purchase.id,
 		}
 	})
 })
 
-// ================================================================
+router.get('/purchase-info', function(req, res) {
 
-router.get('/product-delete', function(req, res) {
+	const id = Number(req.query.id);
 
-	const { id } = req.query;
+	let {
+		firstname,
+		lastname,
+		tel,
+		email,
+		comment,
+		bonus,
+		promocode,
+		total_price,
+		product_price,
+		delivery_price,
+		quantity,
+		product,
+	} = Purchase.getByID(id);
 
-	const result = Product.deleteById(Number(id));
+	let product_name = product.name;
 
-	let message = 'Product was not deleted';
-	if (result) {
-		message = 'Product was successfully deleted';
-	}
-
-	res.render('alert', {
-		style: 'product-create',
+	res.render('purchase-info', {
+		style: 'purchase-info',
 		data: {
-			success: result,
-			message: message,
+			id,
+			firstname,
+			lastname,
+			phone: tel,
+			email,
+			comment,
+			bonus: bonus + "$",
+			promocode,
+			total_price: total_price + "$",
+			product_price: product_price + "$",
+			delivery_price: delivery_price + "$",
+			quantity,
+			product_name,
 		}
 	})
 })
 
-// ================================================================
+router.get('/purchase-edit', function(req, res) {
+	
+	const id = Number(req.query.id);
+	const purchase = Purchase.getByID(id);
 
-router.post('/user-create', function (req, res) {
+	console.log('ID: ' + id);
+	console.log(purchase);
 
-	const {email, login, password} = req.body;
+	let { firstname, lastname, email, tel } = purchase;
+	console.log(firstname, lastname, email, tel);
 
-	const user = new User(email, login, password);
-	User.add(user);
-	console.log(User.getList());
-
-
-	res.render('success-info', {
-		style: 'index',
-		info: 'User created!',
+	res.render('purchase-edit', {
+		style: 'purchase-edit',
+		data: {
+			id,
+			firstname,
+			lastname,
+			email,
+			tel,
+		}
 	})
 })
 
-// ================================================================
-
-router.get('/user-delete', function (req, res) {
-
-	const { id } = req.query;
-
-	if (User.deleteById(id)) {
-		console.log('deleted!')
-	}
-
-	res.render('success-info', {
-		style: 'index',
-		info: 'User deleted!',
+router.post('/purchase-edit', function(req, res) {
+	const id = Number(req.query.id);
+	
+	res.render('alert', {
+		style: 'alert',
+		data: {
+			message: 'Success!',
+			info: 'Purchase updated successfully',
+			link: '/my-purchases?id=' + id,
+		}
 	})
 })
 
-// ================================================================
+router.get('/my-purchases', function(req, res) {
+	const id = Number(req.query.id);
+	const email = Purchase.getByID(id).email;
 
-router.post('/user-update', function (req, res) {
+	const purchases = Purchase.getListByEmail(email);
 
-	const { id, email, password } = req.body;
-
-	let result = false;
-	const user = User.getById(Number(id));
-	if (user.verifyPassword(password)) {
-		result = User.updateById(Number(id), { email });
-	}
-
-	console.log(result)
-
-	res.render('success-info', {
-		style: 'index',
-		info: result ? 'Email changed!' : 'Email NOT changed :(',
+	res.render('my-purchases', {
+		style: 'my-purchases',
+		data: {
+			purchases,
+		},
 	})
+
 })
 
 // ================================================================

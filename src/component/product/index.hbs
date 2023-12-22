@@ -1,0 +1,20 @@
+<div class="product">
+
+	<img src='{{info.image}}' alt='{{info.name}}'>
+
+	<h2>{{info.name}}</h2>
+	<p>{{info.characteristics}}</p>
+
+	{{#if info.is_ready}}
+	<span class='badge badge-green'>Ready for delivery</span>
+	{{/if}}
+
+	{{#if info.is_top}}
+	<span class='badge badge-blue'>Top sales</span>
+	{{/if}}
+
+	<a style='text-decoration: none;' href="/purchase-product?id={{id}}">
+		{{> button buy_button=1 price=price}}
+	</a>
+	
+</div>

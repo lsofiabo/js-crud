@@ -1,0 +1,29 @@
+<div class="purchase-info">
+
+	<h1>Purchase Info</h1>
+
+	<div class="info">
+		{{#with data}}
+		{{>field-info label='ID' value=id lg=1}}
+		<hr>
+		{{>field-info label='Firstname' value=firstname}}
+		{{>field-info label='Lastname' value=lastname}}
+		{{>field-info label='Phone' value=phone}}
+		{{>field-info label='Email' value=email}}
+		<hr>
+		{{>field-info label='Product name' value=product_name lg=1}}
+		{{>field-info label='Comment' value=comment lg=1}}
+		<hr>
+		{{>field-info label='Price of product' value=product_price}}
+		{{>field-info label='Delivery price' value=delivery_price}}
+		{{>field-info label='Total price' value=total_price}}
+		{{>field-info label='Bonuses' value=bonus}}
+		<hr>
+		<a href="/purchase-edit?id={{id}}" class='button-wrap'>
+			{{>button other=1 text="Edit"}}
+		</a>
+		{{/with}}
+	</div>
+
+	
+</div>

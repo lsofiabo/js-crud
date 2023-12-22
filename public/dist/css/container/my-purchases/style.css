@@ -1,0 +1,28 @@
+.purchases-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+}
+
+.purchase-item {
+  display: grid;
+  grid-template-columns: 2fr 4fr 3fr 3fr;
+  grid-template-rows: 1fr;
+}
+
+hr {
+  height: 1px;
+  width: 100%;
+  color: #CED4DA;
+  align-self: stretch;
+}
+
+h1 {
+  color: var(--Blue, #0050FF);
+  font-size: 40px;
+  font-weight: 500;
+  margin-bottom: 60px;
+}
+
+/*# sourceMappingURL=style.css.map */

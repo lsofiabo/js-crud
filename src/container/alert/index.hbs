@@ -1,26 +1,11 @@
-<div class='page'>
-	<div class='page-content'>
-		<div class='card result-card'>
-			{{#with data}}
-			<div class='large-rows vertical'>
-				<h2 class='text text--title'>
-					{{#if success}}
-					Action successful
-					{{else}}
-					Action unsuccessful
-					{{/if}}
-				</h2>
-				<p class='text'>{{message}}</p>
-			</div>
-			<div>
-				
-			</div>
-			<div class='large-rows'>
-				<a href='/product-list' class='button button--primary full-width'>Return</a>
-			</div>
-			{{/with}}
-			
-		</div>
-		
+<div class='alert-box'>
+
+	<div class='info'>
+
+		<h2>{{data.message}}</h2>
+		<p>{{data.info}}</p>
+
 	</div>
+
+	<a href='{{data.link}}' class='button'>Return back</a>
 </div>

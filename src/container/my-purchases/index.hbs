@@ -1,0 +1,25 @@
+<h1>My purchases</h1>
+
+<div class="purchases-list">
+
+	{{#each data.purchases}}
+		{{#if @last}}
+		<div class="purchase-item">
+			{{>field-info label='ID' value=id}}
+			{{>field-info label='Product' value=product.name}}
+			{{>field-info label='Price' value=total_price}}
+			{{>field-info label='Bonuses' value=bonus}}
+		</div>
+		{{else}}
+		<div class="purchase-item">
+			{{>field-info label='ID' value=id}}
+			{{>field-info label='Product' value=product.name}}
+			{{>field-info label='Price' value=total_price}}
+			{{>field-info label='Bonuses' value=bonus}}
+		</div>
+		<hr>
+		{{/if}}
+	{{/each}}
+	
+</div>
+

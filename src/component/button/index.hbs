@@ -1,0 +1,12 @@
+{{#if buy_button}}
+	<button type='submit' class='button-buy {{#if lg}} lg {{/if}}'>Buy now: <strong>{{price}}$</strong></button>
+{{/if}}
+
+{{#if form_button}}
+<button type="submit" {{#if form}} form={{form}} {{/if}} class='button-buy {{#if lg}} lg {{/if}}'>{{text}}</button>
+{{/if}}
+
+{{#if other}}
+	<button type="button" class='button-buy {{#if lg}} lg {{/if}}'>{{text}}</button>
+{{/if}}
+

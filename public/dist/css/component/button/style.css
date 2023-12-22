@@ -1,0 +1,19 @@
+.button-buy {
+  display: flex;
+  padding: 16px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  align-self: stretch;
+  border-radius: 8px;
+  background: var(--Blue, #0050FF);
+  color: #FFF;
+  font-size: 20px;
+  text-decoration: none;
+}
+.button-buy strong {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+/*# sourceMappingURL=style.css.map */

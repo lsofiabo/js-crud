@@ -1,0 +1,65 @@
+@use '../../lib/service.scss' as s;
+@use '../../component/field/style.scss' as fieldStyle;
+@use '../../component/button/style.scss' as buttonStyle;
+
+.form-box {
+	display: flex;
+	flex-direction: column;
+	padding: s.space(6);
+	align-items: flex-start;
+	gap: s.space(3);
+	align-self: stretch;
+	border-radius: s.space(3);
+	background: #FFF;
+	box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
+}
+
+.form {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 20px;
+	align-self: stretch;
+}
+
+.form_heading {
+	margin-bottom: s.space(15);
+	color: var(--Blue, #0050FF);
+	font-size: s.space(10);
+	font-weight: 500;
+	line-height: 100%; /* 40px */
+}
+
+h2 {
+	color: var(--Blue, #0050FF);
+	font-size: s.space(6);
+
+	margin-bottom: s.space(5);
+	margin-top: s.space(5);
+}
+
+.cart {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	align-self: stretch;
+	gap: s.space(5);
+}
+
+.cart-item {
+	display: flex;
+	justify-content: space-between;
+	align-self: stretch;
+
+	color: var(--Black, #000);
+	font-size: s.space(4);
+	line-height: 150%; /* 24px */
+}
+
+.cart-item-price {
+	color: var(--Black, #000);
+	font-size: s.space(5);
+	font-weight: 500;
+	line-height: normal;
+}
+
+
