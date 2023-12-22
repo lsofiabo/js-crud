@@ -127,6 +127,7 @@ class Product {
 class Promocode {
 	static #list = [];
 
+
 	cconstructor(name, factor) {
 		this.name = name;
 		this.factor = factor;
