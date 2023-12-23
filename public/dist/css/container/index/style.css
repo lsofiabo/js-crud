@@ -1,93 +1,41 @@
-.product {
-  padding: 16px;
+.choose {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  border-radius: 12px;
-  border: 1px solid #CED4DA;
-}
-.product h2 {
-  color: var(--color-fill-font-color, #212529);
-  font-size: 20px;
-  font-weight: 500;
-}
-.product p {
-  overflow: hidden;
-  color: var(--color-fill-font-color, #212529);
-  text-overflow: ellipsis;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 23px; /* 143.75% */
-}
-.product .badge {
-  display: flex;
-  padding: 8px 16px;
-  align-items: flex-start;
-  gap: 10px;
-  border-radius: 80px;
-  border-width: 1px;
-  border-style: solid;
-}
-.product .badge-blue {
-  border-color: #0050FF;
-  color: #0050FF;
-}
-.product .badge-green {
-  border-color: #008000;
-  color: #008000;
-}
-.product .button {
-  border-radius: 8px;
-  background: var(--Blue, #0050FF);
-  display: flex;
-  padding: 16px 32px;
-  justify-content: center;
-  align-items: center;
-  gap: 7px;
-  color: white;
-  font-size: 16px;
-  text-decoration: none;
-}
-.product .button strong {
-  font-weight: 500;
-  font-size: 20px;
+  gap: 32px;
 }
 
-.button-buy {
+.choose-item {
   display: flex;
-  padding: 16px 32px;
-  justify-content: center;
-  align-items: center;
-  gap: 7px;
-  align-self: stretch;
-  border-radius: 8px;
-  background: var(--Blue, #0050FF);
-  color: #FFF;
-  font-size: 20px;
-  text-decoration: none;
+  gap: 24px;
 }
-.button-buy strong {
+
+.choose-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.choose-content strong {
   font-size: 24px;
   font-weight: 500;
 }
+.choose-content p {
+  font-size: 16px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  animation: opacity 0.3s ease;
+}
+
+a:hover {
+  opacity: 0.8;
+}
 
 h1 {
-  color: var(--Blue, #0050FF);
-  font-size: 40px;
+  font-size: 24px;
   font-weight: 500;
-}
-
-header {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.products-list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 20px;
-  row-gap: 32px;
+  text-align: center;
 }
 
 /*# sourceMappingURL=style.css.map */

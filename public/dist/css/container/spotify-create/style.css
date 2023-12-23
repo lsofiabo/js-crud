@@ -1,0 +1,42 @@
+.create {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  gap: 112px;
+}
+
+.back {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.form-create-playlist {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 68px;
+}
+.form-create-playlist input {
+  font-size: 68px;
+  font-weight: 600;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #808080;
+}
+
+.form_button {
+  display: flex;
+  padding: 20px 40px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 1000px;
+  background: #20D562;
+  color: #121212;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,59 @@
+header {
+  display: flex;
+  justify-content: space-between;
+}
+header h1 {
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  gap: 32px;
+}
+
+.playlist-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 32px;
+  row-gap: 54px;
+}
+
+.playlist-item {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.playlist-item strong {
+  color: #FFF;
+  font-size: 20px;
+}
+.playlist-item p {
+  color: #BDBDBD;
+  font-size: 16px;
+}
+
+.playlist-cover {
+  width: 345px;
+  height: 345px;
+}
+
+.playlist-cover--default {
+  padding: 88px;
+  background-color: #242424;
+}
+.playlist-cover--default img {
+  width: 170px;
+  height: 170px;
+}
+
+a {
+  animation: opacity 0.3s ease-in-out;
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+/*# sourceMappingURL=style.css.map */

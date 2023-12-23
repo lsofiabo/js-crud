@@ -1,0 +1,16 @@
+<header>
+
+	<h1>Products</h1>
+	<p>{{data.category}}</p>
+
+</header>
+
+<div class="products-list">
+
+	{{#each data.products}}
+
+	{{> product info=this}}
+
+	{{/each}}
+
+</div>
