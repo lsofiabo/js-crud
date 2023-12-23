@@ -1,0 +1,77 @@
+form {
+	display: flex;
+	padding: 9px 32px;
+	align-items: center;
+	align-self: stretch;
+	justify-content: space-between;
+
+	div img {
+		width: 48px;
+		height: 48px;
+	}
+
+	button {
+		color: white;
+		font-size: 28px;
+		animation: opacity 0.3s ease-in-out;
+	}
+
+	button:hover {
+		opacity: 0.8;
+	}
+}
+
+.playlist-list {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+}
+
+.playlist-item {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.playlist-cover {
+	width: 164px;
+	height: 164px;
+}
+
+.playlist-cover--default {
+	padding: 48px;
+	background-color: #242424;
+
+	img {
+		width: 80px;
+		height: 80px;
+	}
+}
+
+.playlist-info {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+	strong {
+		font-size: 24px;
+		font-weight: 500;
+	}
+	p {
+		color: #BDBDBD;
+		font-size: 16px;
+	}
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+
+	animation: opacity 0.3s ease-in-out;
+}
+
+a:hover {
+	opacity: 0.8;
+}
+
+

@@ -1,0 +1,32 @@
+<header>
+	<form method="POST" action="/spotify-search">
+		<div style='display: flex; gap: 20px;'>
+			<img src="/svg/search-bar.svg" alt="">
+			<input type="search" name="value" placeholder="Введіть запит" value="{{data.value}}" >
+		</div>
+		<button class='btn'>Пошук</button>
+	</form>
+</header>
+
+<ul class='playlist-list'>
+
+	{{#each data.playlists}}
+		<a href="/spotify-playlist?id={{id}}">
+			<li class='playlist-item'>
+				{{#if cover}}
+					<img class='playlist-cover' src="{{cover}}" alt="">
+				{{else}}
+					<div class='playlist-cover--default'>
+						<img src="/svg/playlist.svg" alt="">
+					</div>
+				{{/if}}
+				<div class="playlist-info">
+					<strong>{{name}}</strong>
+					<p>Плейліст * {{tracks.length}} треків</p>
+				</div>
+			</li>
+		</a>
+	{{/each}}
+	
+</ul>
+

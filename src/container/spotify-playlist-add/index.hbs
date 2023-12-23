@@ -1,0 +1,24 @@
+<main>
+	<h1>Додати до плейліста</h1>
+
+	<ul class='tracks-list'>
+
+		{{#each data.tracks}}
+		<li class='track-item'>
+			<div class='track-main'>
+				<img class='track-cover' src="{{cover}}" alt="">
+				<div class="track-content">
+					<strong>{{name}}</strong>
+					<p>{{author}}</p>
+				</div>
+			</div>
+
+			<a href="/spotify-track-add?playlistId={{../data.id}}&trackId={{id}}">
+				<img src="/svg/add-track.svg" alt="">
+			</a>
+		</li>
+		{{/each}}
+
+	</ul>
+
+</main>
