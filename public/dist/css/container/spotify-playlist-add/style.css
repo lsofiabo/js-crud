@@ -1,0 +1,51 @@
+h1 {
+  font-size: 28px;
+  font-weight: 500;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.tracks-list {
+  display: flex;
+  padding: 24px 32px;
+  flex-direction: column;
+  gap: 32px;
+  border-radius: 8px;
+  background: #282828;
+}
+
+.track-main {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.track-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.track-cover {
+  width: 92px;
+  height: 92px;
+}
+
+.track-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.track-content strong {
+  font-size: 24px;
+  font-weight: 500;
+}
+.track-content p {
+  color: #BABABA;
+  font-size: 16px;
+}
+
+/*# sourceMappingURL=style.css.map */

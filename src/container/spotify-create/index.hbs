@@ -1,0 +1,11 @@
+<main class='create'>
+	<a class='back' href="/">
+		<img src="/svg/back.svg" alt="Back">
+	</a>
+	<h1>Назвіть плейліст</h1>
+
+	<form method="POST" action="/spotify-create{{#if data.isMix}}?isMix=true{{/if}}" class='form-create-playlist'>
+		<input required type="text" name="name" placeholder='Назва'>
+		<button type="submit" class='form_button'>Створити</button>
+	</form>
+</main>

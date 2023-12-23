@@ -1,16 +1,23 @@
-<header>
+<h1>Create</h1>
 
-	<h1>Products</h1>
-	<p>{{data.category}}</p>
+<ul class='choose'>
+	<a href="/spotify-create">
+		<li class='choose-item'>
+			<img src="/svg/playlist.svg" alt="Playlist">
+			<div class='choose-content'>
+				<strong>Плейліст</strong>
+				<p>Створіть плейліст із піснями чи епізодами</p>
+			</div>
+		</li>
+	</a>
+	<a href="/spotify-create?isMix=true">
+		<li class='choose-item'>
+			<img src="/svg/mix.svg" alt="Mix">
+			<div class='choose-content'>
+				<strong>Мікс</strong>
+				<p>Комбінуйте смаки в спільному плейлісті з друзями</p>
+			</div>
+		</li>
+	</a>
+</ul>
 
-</header>
-
-<div class="products-list">
-
-	{{#each data.products}}
-
-	{{> product info=this}}
-
-	{{/each}}
-
-</div>

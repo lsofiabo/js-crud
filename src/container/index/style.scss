@@ -1,24 +1,45 @@
+
 @use '../../lib/service.scss' as s;
 
-@use '../../component/product/style.scss' as productStyle;
-@use '../../component/button/style.scss' as buttonStyle;
-
-h1 {
-	color: var(--Blue, #0050FF);
-	font-size: 40px;
-	font-weight: 500;
-}
-
-header {
+.choose {
 	display: flex;
 	flex-direction: column;
-	gap: s.space(5);
+	gap: s.space(8);
 }
-.products-list {
 
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	column-gap: s.space(5);
-	row-gap: s.space(8);
+.choose-item {
+	display: flex;
+	gap: s.space(6);
+}
+
+.choose-content {
+	display: flex;
+	flex-direction: column;
+	gap: s.space(6);
+
+	strong {
+		font-size: 24px;
+		font-weight: 500;
+	}
+
+	p {
+		font-size: 16px;
+	}
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+	animation: opacity 0.3s ease;
+}
+
+a:hover {
+	opacity: 0.8;
+}
+
+h1 {
+	font-size: 24px;
+	font-weight: 500;
+	text-align: center;
 }
 

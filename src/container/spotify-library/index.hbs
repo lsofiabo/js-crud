@@ -1,0 +1,33 @@
+<header>
+	<h1>Моя бібліотека</h1>
+
+	<div class='actions'>
+		<a href="/spotify-search">
+			<img src="/svg/search.svg" alt="">
+		</a>
+		<a href="/">
+			<img src="/svg/plus.svg" alt="">
+		</a>
+	</div>
+</header>
+
+<div class="playlist-list">
+
+	{{#each data.playlists}}
+		<a href="/spotify-playlist?id={{id}}">
+			<div class="playlist-item">
+				{{#if cover}}
+					<img class='playlist-cover' src="{{cover}}" alt="">
+				{{else}}
+					<div class='playlist-cover--default'>
+						<img src="/svg/playlist.svg" alt="">
+					</div>
+				{{/if}}
+				<strong>{{name}}</strong>
+				<p>{{tracks.length}} треків</p>
+			</div>
+		</a>
+	{{/each}}
+	
+</div>
+
